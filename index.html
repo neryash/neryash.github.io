@@ -249,6 +249,8 @@
         .reader-content {
             width: 100%;
             max-width: 850px;
+            max-width: 100vw;
+            overflow-x: hidden;
             background: var(--bg-base);
             min-height: 100vh;
             padding: 6rem 4rem;
@@ -321,8 +323,8 @@
             }
 
             .main-feed { margin-left: 0; width: 100%; padding: 2rem 1rem; }
-            .reader-content { padding: 4rem 1.5rem; }
-            .article-title { font-size: 2rem; }
+            .reader-content { padding: 4rem 1.5rem; box-sizing: border-box; }
+            .article-title { font-size: 1.8rem; }
             .close-reader { top: 1rem; right: 1rem; }
 
             .mobile-scroll-indicator {
@@ -341,6 +343,14 @@
             @keyframes pulse {
                 0%, 100% { opacity: 0.5; transform: translateY(0); }
                 50% { opacity: 1; transform: translateY(5px); }
+            }
+        }
+        @media (max-width: 400px) {
+            .card {
+                padding: 1.2rem;
+            }
+            .feed-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
     </style>
@@ -502,17 +512,32 @@
         const reader = document.getElementById('reader');
         const payload = document.getElementById('reader-payload');
 
+        function pushHistoryState() {
+            window.history.pushState({ readerOpen: true }, '');
+        }
+
+        window.addEventListener('popstate', (event) => {
+            if (reader.classList.contains('active')) {
+                forceCloseReader();
+            }
+        });
+
         function openReader(templateId) {
             const content = document.getElementById(templateId).innerHTML;
             payload.innerHTML = content;
             reader.classList.add('active');
             document.body.style.overflow = 'hidden'; 
-            reader.scrollTop = 0; 
+            reader.scrollTop = 0;
+            pushHistoryState();
         }
 
         function forceCloseReader() {
             reader.classList.remove('active');
             document.body.style.overflow = 'auto'; 
+
+            if (window.history.state && window.history.state.readerOpen) {
+                window.history.back();
+            }
         }
 
         function closeReader(e) {
