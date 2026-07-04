@@ -354,13 +354,13 @@
 
         <nav class="filters">
             <button class="filter-btn active" data-filter="all">
-                All Projects <span style="font-family: var(--font-mono); font-size: 0.8rem;">[5]</span>
+                All Projects <span style="font-family: var(--font-mono); font-size: 0.8rem;" id="count-all">[5]</span>
             </button>
             <button class="filter-btn" data-filter="research">
-                Research <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-research);">[2]</span>
+                Research <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-research);" id="count-research">[2]</span>
             </button>
             <button class="filter-btn" data-filter="dev">
-                Development <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-dev);">[3]</span>
+                Development <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-dev);" id="count-dev">[3]</span>
             </button>
         </nav>
 
@@ -391,25 +391,22 @@
             
             <div class="card item" data-category="dev" onclick="openReader('100w-flashlight')">
                 <div class="card-content">
-                    <span class="tag research">Development</span>
-                    <h2>Decompiling Obfuscated APK Structures</h2>
-                    <p>Methodology for extracting and analyzing compiled Android packages to identify insecure local storage patterns and bypass obfuscation layers.</p>
+                    <span class="tag dev">Development</span>
+                    <h2>Building a 100w Flashlight</h2>
+                    <p>Trying to build a battery powered 100w flashlight with an interchangable lens system.</p>
                     <div class="card-footer">
-                        <span>JADX / Reverse Eng.</span>
-                        <span>05.2026</span>
+                        <span>Electronics / DIY</span>
+                        <span>07.2026</span>
                     </div>
                 </div>
                 <template id="100w-flashlight">
                     <div class="article-header">
-                        <span class="tag research">Research Document</span>
-                        <h1 class="article-title">Decompiling Obfuscated APK Structures</h1>
-                        <div class="article-meta">Published: May 2026 &nbsp;|&nbsp; Target: Android Compilation Layers</div>
+                        <span class="tag dev">Cool Project</span>
+                        <h1 class="article-title">Building a 100w Flashlight</h1>
+                        <div class="article-meta">Published: July 2026 &nbsp;|&nbsp; Target: Android Compilation Layers</div>
                     </div>
                     <div class="article-body">
-                        <p>Reverse engineering native Android application structures requires stepping through heavily packed and obfuscated components. This writeup unpacks concrete methods to handle string encryption and dynamic class loading defenses.</p>
-                        <h3>The Methodology</h3>
-                        <p>Using open-source parsing environments like <code>JADX</code> and heavy debug engines like <code>IDA Pro</code>, we expose underlying asset targets and bypass root-detection scripts locally to verify runtime storage safety vectors.</p>
-                        <p>When encountering ProGuard or R8 obfuscation, mapping the execution flow manually via Dalvik bytecode allows us to reconstruct the original logic patterns, ensuring security compliance at the hardware and memory level.</p>
+                        
                     </div>
                 </template>
             </div>
@@ -420,7 +417,7 @@
                     <h2>Pentesting a Shipment Companies Website</h2>
                     <p>How I searched, and found some crazy vulnerabilities in one of Israel's biggest shipping company.</p>
                     <div class="card-footer">
-                        <span>Security Research.</span>
+                        <span>Security Research</span>
                         <span>07.2026</span>
                     </div>
                 </div>
@@ -428,13 +425,10 @@
                     <div class="article-header">
                         <span class="tag research">Research Document</span>
                         <h1 class="article-title">Pentesting a Shipment Companies Website</h1>
-                        <div class="article-meta">Published: May 2026 &nbsp;|&nbsp; Target: Android Compilation Layers</div>
+                        <div class="article-meta">Published: July 2026 &nbsp;|&nbsp; Target: Big Shipment Company</div>
                     </div>
                     <div class="article-body">
-                        <p>Reverse engineering native Android application structures requires stepping through heavily packed and obfuscated components. This writeup unpacks concrete methods to handle string encryption and dynamic class loading defenses.</p>
-                        <h3>The Methodology</h3>
-                        <p>Using open-source parsing environments like <code>JADX</code> and heavy debug engines like <code>IDA Pro</code>, we expose underlying asset targets and bypass root-detection scripts locally to verify runtime storage safety vectors.</p>
-                        <p>When encountering ProGuard or R8 obfuscation, mapping the execution flow manually via Dalvik bytecode allows us to reconstruct the original logic patterns, ensuring security compliance at the hardware and memory level.</p>
+                        
                     </div>
                 </template>
             </div>
@@ -465,6 +459,19 @@
         const filterBtns = document.querySelectorAll('.filter-btn');
         const items = document.querySelectorAll('.item');
         const feedGrid = document.getElementById('feed-grid');
+
+        function updateCounts() {
+            const counts = { all: 0, research: 0, dev: 0 };
+            items.forEach(item => {
+                counts.all++;
+                counts[item.getAttribute('data-category')]++;
+            });
+            document.getElementById('count-all').innerText = `[${counts.all}]`;
+            document.getElementById('count-research').innerText = `[${counts.research}]`;
+            document.getElementById('count-dev').innerText = `[${counts.dev}]`;
+        }
+
+        updateCounts();
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
