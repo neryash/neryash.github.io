@@ -294,7 +294,9 @@
         .article-body p { margin-bottom: 1.8rem; }
         .article-body h3 { color: white; font-size: 1.8rem; margin: 3rem 0 1rem; }
         .article-body code { font-family: var(--font-mono); background: var(--surface-glass); padding: 0.2em 0.4em; border-radius: 4px; color: var(--accent-dev); font-size: 0.9em; }
-
+        a {
+            color: var(--accent-dev);
+        }
         /* Mobile Adjustments */
         @media (max-width: 900px) {
             body { flex-direction: column; }
@@ -378,7 +380,7 @@
         <div class="contact-module">
             <h3>Connect & Endpoints</h3>
             <div class="contact-links">
-                <a href="mailto:neryasheetrit@gmail.com">email // neryasheetrit@gmail.com</a>
+                <a href="mailto:neryaswebsites@gmail.com">email // neryaswebsites@gmail.com</a>
                 <a href="https://github.com/neryash" target="_blank">github // @neryash</a>
             </div>
             
@@ -399,7 +401,30 @@
 
     <main class="main-feed">
         <div class="feed-grid" id="feed-grid">
-            
+            <div class="card item" data-category="dev" onclick="openReader('Interval')">
+                <div class="card-content">
+                    <span class="tag dev">Development</span>
+                    <h2>Interval - an Android App</h2>
+                    <p>A different way to organize your every day life.</p>
+                    <div class="card-footer">
+                        <span>Android / Dev</span>
+                        <span>09.2026</span>
+                    </div>
+                </div>
+                <template id="Interval">
+                    <div class="article-header">
+                        <span class="tag dev">Development</span>
+                        <h1 class="article-title">Interval - an Android App</h1>
+                        <div class="article-meta">Published: September 2026</div>
+                    </div>
+                    <div class="article-body">
+                        <p>You can find Interval's terms of use and privacy policy in the following links:</p>
+                        <a href="/interval-privacy-policy">Privacy policy</a><br/>
+                        <a href="/interval-terms-of-use">Terms of use</a>
+                    </div>
+                </template>
+            </div>
+
             <div class="card item" data-category="dev" onclick="openReader('100w-flashlight')">
                 <div class="card-content">
                     <span class="tag dev">Development</span>

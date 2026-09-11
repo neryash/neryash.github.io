@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interval Terms of Use | Nerya Sheetrit</title>
+    <style>
+        :root {
+            --bg-base: #050505;
+            --surface-glass: rgba(20, 20, 22, 0.6);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a93;
+            
+            /* Tag Colors */
+            --accent-dev: #00e5ff; 
+            --accent-research: #b300ff; 
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(179, 0, 255, 0.03) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .home-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .home-btn:hover { 
+            background: white; 
+            color: black; 
+            transform: scale(1.05); 
+        }
+
+        .page-title {
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Content Area */
+        .content-card {
+            background: var(--surface-glass);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            margin-bottom: 4rem;
+        }
+
+        .last-updated {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--accent-dev);
+            margin-bottom: 2rem;
+            display: inline-block;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        .policy-body {
+            font-size: 1.05rem;
+            color: #d1d1d6;
+            line-height: 1.8;
+        }
+
+        .policy-body h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin: 2.5rem 0 1rem;
+            font-weight: 600;
+        }
+
+        .policy-body h2:first-of-type {
+            margin-top: 1rem;
+        }
+
+        .policy-body p {
+            margin-bottom: 1.2rem;
+        }
+
+        .policy-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .policy-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--surface-border);
+            padding: 3rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .site-footer h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-family: var(--font-mono);
+            transition: color 0.2s;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+        }
+
+        .footer-links a:hover {
+            background: var(--surface-glass);
+            color: var(--accent-dev);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .container { padding: 2rem 1rem; }
+            .content-card { padding: 2rem 1.5rem; }
+            .page-title { font-size: 1.8rem; }
+            .page-header { gap: 1rem; }
+            .footer-links { flex-direction: column; gap: 1rem; width: 100%; }
+            .footer-links a { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="page-header">
+            <a href="/" class="home-btn" aria-label="Return to Home">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </a>
+            <h1 class="page-title">Interval Terms of Use</h1>
+        </header>
+
+        <main class="content-card">
+            <div class="last-updated">Last Updated: September 2026</div>
+            
+            <div class="policy-body">
+                <p>By downloading or using the Interval app ("Service"), these terms will automatically apply to you. You should make sure therefore that you read them carefully before using the app.</p>
+
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing and using Interval, you accept and agree to be bound by the terms and provision of this agreement.</p>
+
+                <h3>2. Use of the App</h3>
+                <p>Interval is a productivity tool designed to help you track recurring tasks and general goals. You agree to use the app only for lawful purposes and in a way that does not infringe the rights of, restrict, or inhibit anyone else's use and enjoyment of the app.</p>
+
+                <h3>3. User-Generated Content and Data Loss</h3>
+                <p>Interval allows you to create and track your own goals and tasks. <strong>All data you create within the app is stored locally on your specific device.</strong> We do not have access to your data, nor do we sync it to a cloud server.</p>
+                <ul>
+                    <li><strong>Data Responsibility:</strong> Because data is stored locally, if you uninstall the app, clear the app's data, or lose/break your device, your tasks and goals will be permanently deleted. Nerya Sheetrit is not responsible for any lost data.</li>
+                </ul>
+
+                <h3>4. Intellectual Property</h3>
+                <p>The app itself, and all the trademarks, copyright, database rights, and other intellectual property rights related to it, belong to Nerya Sheetrit. You are not allowed to copy, or modify the app, any part of the app, or our trademarks in any way. You are not allowed to attempt to extract the source code of the app, and you also shouldn't try to translate the app into other languages or make derivative versions.</p>
+
+                <h3>5. Cost and Monetization</h3>
+                <p>Interval is provided completely free of charge. There are no in-app purchases, subscriptions, or advertisements within the app.</p>
+
+                <h3>6. Disclaimer of Warranties</h3>
+                <p>The Service is provided to you "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. Nerya Sheetrit provides no warranty or undertaking, and makes no representation of any kind that the app will meet your requirements, achieve any intended results, be compatible, or work with any other software, applications, systems, or services, operate without interruption, or meet any performance or reliability standards.</p>
+
+                <h3>7. Limitation of Liability</h3>
+                <p>To the maximum extent permitted by applicable law, in no event shall Nerya Sheetrit be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of data or other information, for business interruption, or for personal injury) arising out of or in any way related to the use of or inability to use the app.</p>
+
+                <h3>8. Changes to These Terms</h3>
+                <p>We may update our Terms of Usage from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Terms of Usage on this page.</p>
+
+                <h3>9. Contact Us</h3>
+                <p>If you have any questions or suggestions about our Terms of Usage, do not hesitate to contact us at <strong><a href="mailto:neryaswebsites@gmail.com">neryaswebsites@gmail.com</a></strong>.</p>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <h3>Connect & Endpoints</h3>
+            <div class="footer-links">
+                <a href="mailto:neryaswebsites@gmail.com">email // neryaswebsites@gmail.com</a>
+                <a href="https://github.com/neryash" target="_blank">github // @neryash</a>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
