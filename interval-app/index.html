@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interval - an Android App | Nerya Sheetrit</title>
+    <style>
+        :root {
+            --bg-base: #050505;
+            --surface-glass: rgba(20, 20, 22, 0.6);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #8a8a93;
+            
+            /* Tag Colors */
+            --accent-dev: #00e5ff; /* Cyan for Dev */
+            --accent-research: #b300ff; /* Purple for Research */
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(179, 0, 255, 0.03) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* -------------------------------------
+           LAYOUT
+        ------------------------------------- */
+        .sidebar {
+            width: 340px;
+            height: 100vh;
+            position: fixed;
+            top: 0; left: 0;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--surface-border);
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 100;
+        }
+
+        .main-feed {
+            margin-left: 340px;
+            width: calc(100% - 340px);
+            padding: 3rem;
+            min-height: 100vh;
+        }
+
+        /* -------------------------------------
+           SIDEBAR ELEMENTS
+        ------------------------------------- */
+        .brand h1 {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .brand h1 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .brand p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 2.5rem;
+        }
+
+        .filters {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            text-align: left;
+            padding: 0.8rem 1rem;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-btn:hover { background: var(--surface-glass); color: var(--text-primary); }
+
+        .contact-module { margin-top: auto; }
+        
+        .contact-module h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-links a {
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover { opacity: 0.7; }
+
+        .fiverr-card {
+            margin-top: 2rem;
+            padding: 1.2rem;
+            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(29, 191, 115, 0.1), rgba(29, 191, 115, 0.02));
+            border: 1px solid rgba(29, 191, 115, 0.2);
+            font-size: 0.9rem;
+        }
+        .fiverr-card a {
+            color: #1dbf73;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        /* -------------------------------------
+           STANDALONE ARTICLE
+        ------------------------------------- */
+        .article-page-container {
+            max-width: 850px;
+            background: var(--surface-glass);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 4rem;
+        }
+
+        .tag {
+            display: inline-block;
+            align-self: flex-start;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.dev { color: var(--accent-dev); background: rgba(0, 229, 255, 0.1); border: 1px solid rgba(0, 229, 255, 0.2); }
+
+        .article-body { font-size: 1.15rem; color: #d1d1d6; line-height: 1.8; }
+        
+        .article-header { 
+            margin-bottom: 2rem; 
+            border-bottom: 1px solid var(--surface-border); 
+            padding-bottom: 1rem; 
+        }
+        
+        .article-title { font-size: 2.8rem; font-weight: 700; color: white; line-height: 1.2; margin-bottom: 1.5rem; }
+        .article-meta { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-secondary); }
+        .article-body p { margin-bottom: 1.8rem; }
+        .article-body a { color: var(--accent-dev); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            
+            .sidebar { 
+                width: 100%; 
+                height: auto; 
+                position: relative; 
+                border-right: none; 
+                border-bottom: 1px solid var(--surface-border); 
+                padding: 2rem 1.5rem; 
+                z-index: 10; 
+            }
+            .brand p { margin-bottom: 1.5rem; }
+            
+            .filters { margin-bottom: 1.5rem; }
+
+            .main-feed { margin-left: 0; width: 100%; padding: 2rem 1rem; }
+            
+            .article-page-container { padding: 2rem 1.5rem; }
+            .article-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h1><a href="/">Nerya Sheetrit</a></h1>
+            <p>Android & Web Developer.<br>Security Researcher.</p>
+        </div>
+
+        <nav class="filters">
+            <button class="filter-btn" onclick="window.location.href='/'">
+                ← Back to Home
+            </button>
+        </nav>
+
+        <div class="contact-module">
+            <h3>Connect & Endpoints</h3>
+            <div class="contact-links">
+                <a href="mailto:neryaswebsites@gmail.com">email // neryaswebsites@gmail.com</a>
+                <a href="https://github.com/neryash" target="_blank">github // @neryash</a>
+            </div>
+            
+            <div class="fiverr-card">
+                Freelance service provider for specialized web and mobile architectures.
+                <a href="https://www.fiverr.com/s/6YlK3Eb" target="_blank">Read Fiverr Reviews →</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-feed">
+        <div class="article-page-container">
+            <div class="article-header">
+                <span class="tag dev">Development</span>
+                <h1 class="article-title">Interval - an Android App</h1>
+                <div class="article-meta">Published: September 2026</div>
+            </div>
+            <div class="article-body">
+                <p>You can find Interval's terms of use and privacy policy in the following links:</p>
+                <a href="/interval-privacy-policy">Privacy policy</a><br/>
+                <a href="/interval-terms-of-use">Terms of use</a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
